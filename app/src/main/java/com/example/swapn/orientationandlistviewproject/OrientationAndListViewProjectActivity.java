@@ -23,10 +23,10 @@ import java.util.List;
 
 class Car implements Serializable{
 
-    String name;
-    int speed;
-    int hp;
-    String content;
+    private String name;
+    private int speed;
+    private int hp;
+    private String content;
 
     public Car (String name, int speed, int hp, String content){
         this.name = name;
@@ -47,7 +47,6 @@ class Car implements Serializable{
     public  String getContent() {
         return content;
     }
-
 }
 
 
@@ -58,13 +57,12 @@ public class OrientationAndListViewProjectActivity extends AppCompatActivity {
     TextView textView2;
     TextView CtextView;
     ArrayList<Car> carArray;
-    Car car1;
-    Car car2;
-    Car car3;
+    int currentPos = -1;
 
     public static final String ARRAY_KEY = "array key";
     public static final String TS_KEY = "top speed";
     public static final String HP_KEY = "horsepower";
+    public static final String C_KEY = "current";
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -72,6 +70,7 @@ public class OrientationAndListViewProjectActivity extends AppCompatActivity {
         outState.putSerializable(ARRAY_KEY,carArray);
         outState.putString(TS_KEY, textView1.getText().toString());
         outState.putString(HP_KEY, textView2.getText().toString());
+        outState.putInt(C_KEY, currentPos);
     }
 
     @Override
@@ -85,7 +84,7 @@ public class OrientationAndListViewProjectActivity extends AppCompatActivity {
         CtextView = (TextView) findViewById(R.id.content_textView);
 
         carArray = new ArrayList<>();
-        carArray.add(new Car("KOENIGSEGG AGERA R",273,1140,"qwer"));
+        carArray.add(new Car("KOENIGSEGG AGERA R",273,1140,"This is the fastest car."));
         carArray.add(new Car("HENNESSEY VENOM GT",270,1244,"asdf"));
         carArray.add(new Car("BUGATTI VEYRON SUPER SPORT",268,1200,"zxcv"));
         carArray.add(new Car("9FF GT9-R",257,1120,"uiop"));
@@ -96,6 +95,10 @@ public class OrientationAndListViewProjectActivity extends AppCompatActivity {
             carArray = (ArrayList) savedInstanceState.getSerializable(ARRAY_KEY);
             textView1.setText(savedInstanceState.getString(TS_KEY));
             textView2.setText(savedInstanceState.getString(HP_KEY));
+            currentPos = savedInstanceState.getInt(C_KEY);
+            if (currentPos != -1 && CtextView != null) {
+                CtextView.setText(carArray.get(currentPos).getContent());
+            }
         }
 
         CustomAdapter adapter = new CustomAdapter(this, R.layout.list_layout,carArray);
@@ -104,6 +107,7 @@ public class OrientationAndListViewProjectActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                currentPos = i;
                 textView1.setText("Top Speed: " + carArray.get(i).getSpeed()+ " mph");
                 textView2.setText("Horse power: " + carArray.get(i).getHp());
                 if (CtextView!=null){
@@ -151,7 +155,7 @@ public class OrientationAndListViewProjectActivity extends AppCompatActivity {
                 imageView.setImageResource(R.drawable.sscultimateaero);
             else if (position == 5)
                 imageView.setImageResource(R.drawable.mclaren);
-            
+
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -159,6 +163,9 @@ public class OrientationAndListViewProjectActivity extends AppCompatActivity {
                     notifyDataSetChanged();
                     textView1.setText("Top Speed:");
                     textView2.setText("Horse power:");
+                    if (CtextView!= null)
+                        CtextView.setText("Select a car for more info");
+                    currentPos = -1;
                 }
             });
 
