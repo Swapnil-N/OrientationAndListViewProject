@@ -143,17 +143,17 @@ public class OrientationAndListViewProjectActivity extends AppCompatActivity {
 
             textView.setText(list.get(position).getName());
 
-            if (position == 0)
+            if (list.get(position).getName().equals("KOENIGSEGG AGERA R"))
                 imageView.setImageResource(R.drawable.koenigsegg);
-            else if (position == 1)
+            else if (list.get(position).getName().equals("HENNESSEY VENOM GT"))
                 imageView.setImageResource(R.drawable.henesseyvenom);
-            else if (position == 2)
+            else if (list.get(position).getName().equals("BUGATTI VEYRON SUPER SPORT"))
                 imageView.setImageResource(R.drawable.bugatti);
-            else if (position == 3)
+            else if (list.get(position).getName().equals("9FF GT9-R"))
                 imageView.setImageResource(R.drawable.car4);
-            else if (position == 4)
+            else if (list.get(position).getName().equals("SSC ULTIMATE AERO"))
                 imageView.setImageResource(R.drawable.sscultimateaero);
-            else if (position == 5)
+            else if (list.get(position).getName().equals("MCLAREN F1"))
                 imageView.setImageResource(R.drawable.mclaren);
 
             button.setOnClickListener(new View.OnClickListener() {
