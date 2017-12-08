@@ -84,12 +84,12 @@ public class OrientationAndListViewProjectActivity extends AppCompatActivity {
         CtextView = (TextView) findViewById(R.id.content_textView);
 
         carArray = new ArrayList<>();
-        carArray.add(new Car("KOENIGSEGG AGERA R",273,1140,"This is the fastest car."));
-        carArray.add(new Car("HENNESSEY VENOM GT",270,1244,"asdf"));
-        carArray.add(new Car("BUGATTI VEYRON SUPER SPORT",268,1200,"zxcv"));
-        carArray.add(new Car("9FF GT9-R",257,1120,"uiop"));
-        carArray.add(new Car("SSC ULTIMATE AERO",256,1287,"vnbm"));
-        carArray.add(new Car("MCLAREN F1", 241,670,"jkl"));
+        carArray.add(new Car("KOENIGSEGG AGERA R",273,1140,"This is the fastest car on my list. It is 3 mph faster than the next fastest car in my list. Even though it is from KOENIGSEGG, not a well known company, they were able to make one of the fastest car ever."));
+        carArray.add(new Car("HENNESSEY VENOM GT",270,1244,"This car is right behind the Agera R in top speed even though it has 104 more HP. The GT stands for Grand Turismo and means it has a better engine. Only 13 such cars has been made by Hennessey."));
+        carArray.add(new Car("BUGATTI VEYRON SUPER SPORT",268,1200,"This car usd to hold the title for the fastest car until recently. It was one of the first cars to ever break the 250 MPH limit. The super sport is the fastest model for the Bugatti Veyron."));
+        carArray.add(new Car("9FF GT9-R",260,1120,"This car was based on the Porche 911 and built to test the limits of street legal cars. Only 20 versions with the most powerful engine were ever made. It is manufactured by 9ff, not a comman brand but a fast one."));
+        carArray.add(new Car("SSC ULTIMATE AERO",256,1287,"The SSC Ultimate Aero once held the record for the fast caar ever until the Veyron stole the number one spot. It has the most horsepower on this list but is unable to reach speeds above 260 MPH."));
+        carArray.add(new Car("MCLAREN F1", 241,670,"The McLaren F1 is a looks amazing. Though it only has 670 HP it is still one of the fastest cars in the world. McLaren is an amazing race car manufacurer but is also capable of making fast street legal cars."));
 
         if (savedInstanceState != null){
             carArray = (ArrayList) savedInstanceState.getSerializable(ARRAY_KEY);
